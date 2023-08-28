@@ -1,14 +1,14 @@
 <div class="fullcontent">
   <div class="formbox">
     <h3>Create an account</h3>
-    <form id="form" action="" >
-      <label for="">Username</label>
+    <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+      <label>Username</label>
       <input type="text" class="asd"/>
-      <label for="">Email</label>
-      <input type="email" class="asd"/>
-      <label for="">Password</label>
-      <input type="password" class="asd"/>
-      <button  class="mainbox" (click)="navigateToLogin()">Register</button>
+      <label>Email</label>
+      <input type="email" class="asd" formControlName="email"/>
+      <label>Password</label>
+      <input type="password" class="asd" formControlName="password"/>
+      <button  class="mainbox">Register</button>
     </form>
   </div>
 

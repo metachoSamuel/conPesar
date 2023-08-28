@@ -6,14 +6,15 @@
   </div>
   <div class="formbox">
     <h3>Log In</h3>
-    <form id="form" >
-      <label for="">Username</label>
-      <input type="text" class="asd"/>
-      <label for="">Password</label>
-      <input type="password" class="asd"/>
+    <form [formGroup]="formlogin" (ngSubmit)="onSubmit()">
+      <label>email</label>
+      <input type="email" class="asd" formControlName="email"/>
+      <label>Password</label>
+      <input type="password" class="asd" formControlName="password"/>
       <button  class="mainbox" (click)="navigateToHome()">Login</button>
-      <label for="">New customer?</label>
-      <button  class="mainbox" (click)="navigateToRegistro()">Register Now</button>
+      <button class="mainbox" (click)="onClick()">Login with Google</button>
+      <label>New customer?</label>
+      <button  class="mainbox">Register Now</button>
     </form>
   </div>
 </div>

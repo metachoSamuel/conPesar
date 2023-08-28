@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "conpesar-ad921": {
+      "hosting": {
+        "conpesar": [
+          "conpesar-ad921"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "conpesar-ad921"
+  }
+}
