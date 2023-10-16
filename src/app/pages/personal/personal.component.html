@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+
+<!-- Modifica la sección de servicios -->
+<section id="services" class="services section-bg">
+  <div class="container-fluid mt-5" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Area personal</h2>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <a (click)="toggleFormulario()">
+            <!-- Agrega una clase para la imagen -->
+            <img src="./assets/img/papel.png" class="card-img-top small-image" alt="Imagen 1">
+          </a>
+          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <h4><a>Agendar cita </a></h4>
+          <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <a (click)="toggleFormulario()">
+            <!-- Agrega una clase para la imagen -->
+            <img src="./assets/img/inyeccion.png" class="card-img-top small-image" alt="Imagen 1">
+          </a>
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a>Agendar Examenes</a></h4>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <a (click)="toggleFormulario()">
+            <!-- Agrega una clase para la imagen -->
+            <img src="./assets/img/lista-de-deseos.png" class="card-img-top small-image" alt="Imagen 1">
+          </a>
+          <div class="icon"><i class="bx bx-tachometer"></i></div>
+          <h4><a>Listar mis Agendas</a></h4>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Services Section -->
+
+<div id="formulario" *ngIf="mostrarFormulario" class="center-form border rounded p-4 border-primary">
+  <div class="container mt-5">
+    <h2 class="mb-4">Agendar Cita Médica</h2>
+    <form class="mx-auto col-md-8">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control col-12" id="nombre" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Apellido</label>
+        <input type="text" class="form-control col-12" id="lastName" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">No Doc</label>
+        <input type="number" class="form-control col-12" id="cc" name="nombre" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="fechaCita" class="form-label">Fecha de la Cita</label>
+        <input type="date" class="form-control col-12" id="fechaCita" name="fechaCita" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="horaCita" class="form-label">Hora de la Cita</label>
+        <input type="time" class="form-control col-12" id="horaCita" name="horaCita" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="comentarios" class="form-label">Comentarios adicionales</label>
+        <textarea class="form-control col-12" id="comentarios" name="comentarios" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="agendarCita()">Agendar Cita</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
