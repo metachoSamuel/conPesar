@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/home']).then(r => {});
       })
       .catch(error => {
-        console.log(error),
+        console.log(error)
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box">
-          <a (click)="toggleFormulario()">
+          <a (click)="toggleFormulario(1)">
             <!-- Agrega una clase para la imagen -->
             <img src="./assets/img/papel.png" class="card-img-top small-image" alt="Imagen 1">
           </a>
@@ -24,7 +24,7 @@
 
       <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
         <div class="icon-box">
-          <a (click)="toggleFormulario()">
+          <a (click)="toggleFormulario(2)">
             <!-- Agrega una clase para la imagen -->
             <img src="./assets/img/inyeccion.png" class="card-img-top small-image" alt="Imagen 1">
           </a>
@@ -36,7 +36,7 @@
 
       <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
         <div class="icon-box">
-          <a (click)="toggleFormulario()">
+          <a (click)="toggleFormulario(3)">
             <!-- Agrega una clase para la imagen -->
             <img src="./assets/img/lista-de-deseos.png" class="card-img-top small-image" alt="Imagen 1">
           </a>
@@ -49,43 +49,151 @@
   </div>
 </section><!-- End Services Section -->
 
-<div id="formulario" *ngIf="mostrarFormulario" class="center-form border rounded p-4 border-primary">
+
+<!-- Furmulario citas -->
+<div id="formulario" *ngIf="mostrarFormulario === 1" class="center-form border rounded p-4 border-primary">
   <div class="container mt-5">
     <h2 class="mb-4">Agendar Cita Médica</h2>
-    <form class="mx-auto col-md-8">
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control col-12" id="nombre" name="nombre" required>
+    <form class="row g-3" [formGroup]="formCita" (ngSubmit)="agendarCita()">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="name" required formControlName="name">
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Apellido</label>
-        <input type="text" class="form-control col-12" id="lastName" name="nombre" required>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control"  name="lastName" required formControlName="lastName">
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="nombre" class="form-label">No Doc</label>
-        <input type="number" class="form-control col-12" id="cc" name="nombre" required>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control"  name="email" required formControlName="email">
+        </div>
       </div>
-
-      <div class="mb-3">
-        <label for="fechaCita" class="form-label">Fecha de la Cita</label>
-        <input type="date" class="form-control col-12" id="fechaCita" name="fechaCita" required>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Numero de celular</label>
+          <input type="text" class="form-control" name="cel" required formControlName="phone">
+        </div>
       </div>
-
-      <div class="mb-3">
-        <label for="horaCita" class="form-label">Hora de la Cita</label>
-        <input type="time" class="form-control col-12" id="horaCita" name="horaCita" required>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">No Doc</label>
+          <input type="number" class="form-control"  name="numDoc" required formControlName="numDoc">
+        </div>
       </div>
-
-      <div class="mb-3">
-        <label for="comentarios" class="form-label">Comentarios adicionales</label>
-        <textarea class="form-control col-12" id="comentarios" name="comentarios" rows="3"></textarea>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Fecha de la Cita</label>
+          <input type="date" class="form-control" name="date" required formControlName="dateAppointment">
+        </div>
       </div>
-
-      <button type="submit" class="btn btn-primary" (click)="agendarCita()">Agendar Cita</button>
+      <div class="col-12">
+        <div class="mb-3">
+          <label class="form-label">Comentarios adicionales</label>
+          <textarea class="form-control" name="comments" rows="3" formControlName="comments"></textarea>
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Agendar Cita</button>
+      </div>
     </form>
   </div>
 </div>
 
+<!-- Furmulario Examenes -->
+<div  *ngIf="mostrarFormulario === 2" class="center-form border rounded p-4 border-primary">
+  <div class="container mt-5">
+    <h2 class="mb-4">Agendar Examenes medicos</h2>
+    <form class="row g-3" [formGroup]="formCita" (ngSubmit)="agendarExam()">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="name" required formControlName="name">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control" name="lastName" required formControlName="lastName">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control"name="email" required formControlName="email">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Numero de celular</label>
+          <input type="text" class="form-control" name="cel" required formControlName="phone">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">No Doc</label>
+          <input type="number" class="form-control"  name="numDoc" required formControlName="numDoc">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Fecha de la Cita</label>
+          <input type="date" class="form-control" name="date" required formControlName="dateAppointment">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="mb-3">
+          <label class="form-label">Seleccionar Comentarios</label>
+          <select class="form-select" name="comments" formControlName="comments">
+            <option value="Toma de muestas">Toma de muestas</option>
+            <option value="Colonoscopia">Colonoscopia</option>
+            <option value="Cropologico">Cropologico</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Agendar Examne</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Tabla para mostrar citas -->
+<div *ngIf="mostrarFormulario === 3" class="table-responsive">
+  <div>
+    <h2>Listado de Citas Médicas</h2>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Número de Celular</th>
+        <th>No Doc</th>
+        <th>Fecha de la Cita</th>
+        <th>Comentarios</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.lastName }}</td>
+        <td>{{ appointment.email }}</td>
+        <td>{{ appointment.phone }}</td>
+        <td>{{ appointment.numDoc }}</td>
+        <td>{{ appointment.dateAppointment }}</td>
+        <td>{{ appointment.comments }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 
