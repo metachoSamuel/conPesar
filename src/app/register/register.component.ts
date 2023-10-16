@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,8 @@ export class RegisterComponent implements OnInit {
     private userService: UserService
     ) {
     this.formReg = new FormGroup({
+      name: new FormControl(),
+      lastName: new FormControl(),
       email: new FormControl(),
       password: new FormControl()
     })
@@ -38,9 +41,22 @@ export class RegisterComponent implements OnInit {
     console.log(this.formReg.value);
     this.userService.register(this.formReg.value)
       .then(response => {
-        console.log(response);
-        this.router.navigate(['/home']);
+        Swal.fire(
+          'User register successfully',
+          '',
+          'success'
+        )
+        const { password, ...formValues } = this.formReg.value
+        this.userService.addUser(formValues).then(r => {})
+        this.router.navigate(['/home']).then(r => {});
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error),
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Email/Password no cumple el formato'
+          })
+      });
   }
 }
