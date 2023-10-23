@@ -48,11 +48,10 @@ export class PersonalComponent implements OnInit{
     this.appointmentService.addAppointment(this.formCita.value)
         .then(response => {
           Swal.fire(
-              'Cita agendada con exito',
-              '',
-              'success'
-          )
-          this.router.navigate(['/personal']).then(r => {});
+            'Cita agendada con exito',
+            '',
+            'success'
+          ).then(r => window.location.reload());
         })
         .catch(error => {
           console.log(error)
@@ -69,12 +68,11 @@ export class PersonalComponent implements OnInit{
     this.appointmentService.addExam(this.formCita.value)
         .then(response => {
           Swal.fire(
-              'Examen agendado con exito',
-              '',
-              'success'
-          )
-          this.router.navigate(['/personal']).then(r => {});
-        })
+            'Examen agendado con exito',
+            '',
+            'success'
+          ).then(r =>  window.location.reload());
+         })
         .catch(error => {
           console.log(error)
           Swal.fire({
