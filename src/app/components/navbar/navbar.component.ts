@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import Swal from "sweetalert2";
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +9,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+
+  constructor(private userService: UserService, private router: Router) {
+  }
+
+  logOut() {
+    Swal.fire({
+      title: '¿Quieres cerrar sesion?',
+      showDenyButton: true,
+      confirmButtonText: 'Salir',
+      denyButtonText: `No salir`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.logout().then(r => {})
+        this.router.navigate(['/login']).then(r => {});
+      }
+    })
+  }
 
 }
