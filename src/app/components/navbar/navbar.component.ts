@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +11,10 @@ import {Router} from "@angular/router";
 })
 export class NavbarComponent {
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) {
   }
 
   logOut() {
