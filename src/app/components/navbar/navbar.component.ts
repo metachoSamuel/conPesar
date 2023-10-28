@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import Swal from "sweetalert2";
-import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-navbar',
