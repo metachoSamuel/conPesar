@@ -49,123 +49,124 @@
   </div>
 </section><!-- End Services Section -->
 
-
-<!-- Furmulario citas -->
-<div id="formulario" *ngIf="mostrarFormulario === 1" class="center-form border rounded p-4 border-primary">
-  <div class="container mt-5">
-    <h2 class="mb-4">Agendar Cita Médica</h2>
-    <form class="row g-3" [formGroup]="formCita" (ngSubmit)="agendarCita()">
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="name" required formControlName="name">
+<div *ngIf="mostrarFormulario === 1" class="container mt-5 container-custom">
+    <div class="mt-5">
+      <h2 class="mb-4">Agendar Cita Médica</h2>
+      <form class="row g-3" [formGroup]="formCita" (ngSubmit)="agendarCita()">
+        <div class="col-md-6">
+          <div class="form-outline mb-4">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="name" required formControlName="name">
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Apellido</label>
-          <input type="text" class="form-control"  name="lastName" required formControlName="lastName">
+        <div class="col-md-6">
+          <div class="form-outline mb-4">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control"  name="lastName" required formControlName="lastName">
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-control"  name="email" required formControlName="email">
+        <div class="col-md-6">
+          <div class="form-outline mb-4">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control"  name="email" required formControlName="email">
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Numero de celular</label>
-          <input type="text" class="form-control" name="cel" required formControlName="phone">
+        <div class="col-md-6">
+          <div class="form-outline mb-4">
+            <label class="form-label">Numero de celular</label>
+            <input type="text" class="form-control" name="cel" required formControlName="phone">
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">No Doc</label>
-          <input type="number" class="form-control"  name="numDoc" required formControlName="numDoc">
+        <div class="col-md-6">
+          <div class="form-outline mb-4">
+            <label class="form-label">No Doc</label>
+            <input type="number" class="form-control"  name="numDoc" required formControlName="numDoc">
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Fecha de la Cita</label>
-          <input type="date" class="form-control" name="date" required formControlName="dateAppointment">
+        <div class="col-md-6">
+          <div class="form-outline mb-4">
+            <label class="form-label">Fecha de la Cita</label>
+            <input type="date" class="form-control" name="date" required formControlName="dateAppointment">
+          </div>
         </div>
-      </div>
-      <div class="col-12">
-        <div class="mb-3">
-          <label class="form-label">Comentarios adicionales</label>
-          <textarea class="form-control" name="comments" rows="3" formControlName="comments"></textarea>
+        <div class="col-12">
+          <div class="form-outline mb-4">
+            <label class="form-label">Comentarios adicionales</label>
+            <textarea class="form-control" name="comments" rows="3" formControlName="comments"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Agendar Cita</button>
-      </div>
-    </form>
-  </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Agendar Cita</button>
+        </div>
+      </form>
+    </div>
 </div>
 
-<!-- Furmulario Examenes -->
-<div  *ngIf="mostrarFormulario === 2" class="center-form border rounded p-4 border-primary">
-  <div class="container mt-5">
-    <h2 class="mb-4">Agendar Examenes medicos</h2>
-    <form class="row g-3" [formGroup]="formCita" (ngSubmit)="agendarExam()">
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="name" required formControlName="name">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Apellido</label>
-          <input type="text" class="form-control" name="lastName" required formControlName="lastName">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-control"name="email" required formControlName="email">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Numero de celular</label>
-          <input type="text" class="form-control" name="cel" required formControlName="phone">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">No Doc</label>
-          <input type="number" class="form-control"  name="numDoc" required formControlName="numDoc">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label class="form-label">Fecha de la Cita</label>
-          <input type="date" class="form-control" name="date" required formControlName="dateAppointment">
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="mb-3">
-          <label class="form-label">Seleccionar Comentarios</label>
-          <select class="form-select" name="comments" formControlName="comments">
-            <option value="Toma de muestas">Toma de muestas</option>
-            <option value="Colonoscopia">Colonoscopia</option>
-            <option value="Cropologico">Cropologico</option>
-          </select>
-        </div>
 
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Agendar Examne</button>
-      </div>
-    </form>
-  </div>
+
+<!-- Furmulario Examenes -->
+<div *ngIf="mostrarFormulario === 2" class="container mt-5 container-custom">
+    <div class="mt-5">
+      <h2 class="mb-4">Agendar Examenes medicos</h2>
+      <form class="row g-3" [formGroup]="formCita" (ngSubmit)="agendarExam()">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="name" required formControlName="name">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" name="lastName" required formControlName="lastName">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control"name="email" required formControlName="email">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Numero de celular</label>
+            <input type="text" class="form-control" name="cel" required formControlName="phone">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">No Doc</label>
+            <input type="number" class="form-control"  name="numDoc" required formControlName="numDoc">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Fecha de la Cita</label>
+            <input type="date" class="form-control" name="date" required formControlName="dateAppointment">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="mb-3">
+            <label class="form-label">Seleccionar Comentarios</label>
+            <select class="form-select" name="comments" formControlName="comments">
+              <option value="Toma de muestas">Toma de muestas</option>
+              <option value="Colonoscopia">Colonoscopia</option>
+              <option value="Cropologico">Cropologico</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Agendar Examne</button>
+        </div>
+      </form>
+    </div>
 </div>
 
 
 <!-- Tabla para mostrar citas -->
-<div *ngIf="mostrarFormulario === 3" class="table-responsive">
+
+<div *ngIf="mostrarFormulario === 3" class="table-responsive table-custom">
   <div>
     <h2>Listado de Citas Médicas</h2>
     <table class="table">
