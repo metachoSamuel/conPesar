@@ -1,100 +1,107 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Lato');
-:root{
-  --primaryred:#ff424f;
-  --secondaryred:#f84735;
-  --lightblack:#222b31;
-  --darkblack:#191c1f;
-  --mainfont:'Dancing Script', cursive;
-  --secondfont: 'Lato', sans-serif;
+.container-custom {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-body{
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  line-height: 1.5;
-  font-family:var(--secondfont);
-}
-*,*:before,*:after{
-  box-sizing: border-box;
-}
-img{
-  max-width: 100%;
-  height: auto;
-}
-.fullcontent{
-  width:100%;
-  min-height: 100vh;
-  height: auto;
-  padding:6% 10% 5% 10%;
-  background:linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),url(https://wallpaperaccess.com/full/422429.jpg);
-  background-size: cover;
-  background-position: 50% 50%;
-  display: flex;
-  flex-direction: row;
-}
-.headings{
-  /* background:red;  */
-  flex-basis: 65%;
-  margin-right: 5%;
-}
-.headings h1{
-  font-size: 4rem;
-  font-family:var(--mainfont);
-  color:white;
-  margin:3% 0% 3% 0%;
-}
-.headings h2{
-  font-size:1.2rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.5);
-}
-.formbox{
-  background:rgb(34,43,49,0.7);
-  color:white;
-  flex-basis: 35%;
-  border-top: 10px solid #1d5cd0;
-  padding: 2% 5%;
-  border-radius: 20px;
-  max-height: 25em;
-}
-.formbox *{
-  margin: 0;
-}
-.formbox h3{
-  font-family: var(--mainfont);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.formbox form label{
-  color: rgba(255, 255, 255, 0.8);
-  display: inline-block;
-  max-width: 100%;
-  margin-bottom: 0.3rem;
-}
-.formbox form .asd{
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: none;
-  background: white;
-  height: 2.8rem;
-  display: block;
-  width: 100%;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-form .mainbox{
-  color: white;
-  box-shadow: none;
-  background:#1d5cd0;
-  height: 2.8rem;
-  display: block;
-  width: 100%;
-  border-radius: 4px;
-  margin-bottom: 10px;
+
+.container-custom.h1 {
   text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+h1 {
+  color: #343a40;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.custom-a {
+  color: #007bff;
+  cursor: pointer;
   text-decoration: none;
+}
+
+.divider {
+  border-top: 2px solid #007bff;
+  margin: 20px 0;
+}
+
+h3 {
+  color: #343a40;
+  font-size: 1.5rem;
+}
+
+.form-outline {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+}
+
+label {
+  color: #6c757d;
+}
+
+.form-check-label {
+  color: #6c757d;
+}
+
+.btn-primary {
+  background-color: #007bff;
   border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
 }
-a .mainbox{
-  margin: 0;
-  padding: 2%;
+
+.btn-primary:hover {
+  background-color: #0056b3;
 }
+
+.link-danger {
+  color: #dc3545;
+  text-decoration: none;
+}
+
+.link-danger:hover {
+  text-decoration: underline;
+}
+
+/* Ajuste de márgenes y espaciados para dispositivos más pequeños */
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .btn-primary {
+    padding: 0.5rem 1rem;
+  }
+}
+
+
