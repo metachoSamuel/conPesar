@@ -76,14 +76,23 @@
   text-align: center;
 }
 
-.table-custom {
-  background: linear-gradient(to right, #c3e0ee, #81abd5);
-  margin: 50px auto;
-  padding: 50px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+/* Estilo para la tabla */
+.table {
+  width: 100%;
 }
+
+/* Estilo para las celdas de acciones */
+.table i {
+  cursor: pointer;
+}
+
+/* Ajuste de estilos según la lógica de los formularios */
+.table td,
+.table th {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+}
+
 
 /* Ajuste de márgenes y espaciados para dispositivos más pequeños */
 @media (max-width: 576px) {

@@ -165,34 +165,41 @@
 
 
 <!-- Tabla para mostrar citas -->
-
-<div *ngIf="mostrarFormulario === 3" class="table-responsive table-custom">
-  <div>
-    <h2>Listado de Citas Médicas</h2>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-        <th>Número de Celular</th>
-        <th>No Doc</th>
-        <th>Fecha de la Cita</th>
-        <th>Comentarios</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let appointment of appointments">
-        <td>{{ appointment.name }}</td>
-        <td>{{ appointment.lastName }}</td>
-        <td>{{ appointment.email }}</td>
-        <td>{{ appointment.phone }}</td>
-        <td>{{ appointment.numDoc }}</td>
-        <td>{{ appointment.dateAppointment }}</td>
-        <td>{{ appointment.comments }}</td>
-      </tr>
-      </tbody>
-    </table>
+<div *ngIf="mostrarFormulario === 3" class="">
+  <div class="card">
+    <div class="card-body">
+      <span class="h3">Listado de Citas</span>
+      <h5 style="margin-top: 30px;" *ngIf="appointments.length == 0">No hay datos para mostrar</h5>
+      <table *ngIf="appointments.length > 0" class="table table-striped mt-5 table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Número de Celular</th>
+          <th>No Doc</th>
+          <th>Fecha de la Cita</th>
+          <th>Comentarios</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let appointment of appointments">
+          <td>{{ appointment.name }}</td>
+          <td>{{ appointment.lastName }}</td>
+          <td>{{ appointment.email }}</td>
+          <td>{{ appointment.phone }}</td>
+          <td>{{ appointment.numDoc }}</td>
+          <td>{{ appointment.dateAppointment }}</td>
+          <td>{{ appointment.comments }}</td>
+          <td>
+            <i class="fas fa-edit fa-lg text-info mr-2"></i>
+            <i (click)="onClickDelete(appointment)" class="fas fa-trash-alt fa-lg text-danger"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

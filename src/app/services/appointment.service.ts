@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {addDoc, collection, collectionData, Firestore} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, Firestore, doc, deleteDoc} from "@angular/fire/firestore";
 import {Appointment} from "../interfaces/appointment";
 import {Exam} from "../interfaces/appointment";
 import {Observable, Observer} from "rxjs";
@@ -25,4 +25,10 @@ export class AppointmentService {
     const appointmentRef = collection(this.firestore, 'appointment ');
     return collectionData(appointmentRef, {idField: 'id'}) as Observable<Appointment[]>;
   }
+
+  deleteAppointment(appointment: Appointment) {
+    const appointmentRef = doc(this.firestore, `appointment /${appointment.id}`);
+    return deleteDoc(appointmentRef);
+  }
+
 }
