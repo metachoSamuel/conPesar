@@ -12,22 +12,22 @@ export class AppointmentService {
   constructor(private firestore: Firestore) { }
 
   addAppointment (appointment: Appointment) {
-    const appointmentRef = collection(this.firestore, 'appointment ');
+    const appointmentRef = collection(this.firestore, 'appointment');
     return addDoc(appointmentRef, appointment);
   }
 
   addExam (exam: Exam) {
-    const examRef = collection(this.firestore, 'Exams ');
+    const examRef = collection(this.firestore, 'exams');
     return addDoc(examRef, exam);
   }
 
   getAppointments (): Observable<Appointment[]> {
-    const appointmentRef = collection(this.firestore, 'appointment ');
+    const appointmentRef = collection(this.firestore, 'appointment');
     return collectionData(appointmentRef, {idField: 'id'}) as Observable<Appointment[]>;
   }
 
   deleteAppointment(appointment: Appointment) {
-    const appointmentRef = doc(this.firestore, `appointment /${appointment.id}`);
+    const appointmentRef = doc(this.firestore, `appointment/${appointment.id}`);
     return deleteDoc(appointmentRef);
   }
 
