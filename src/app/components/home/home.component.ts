@@ -28,13 +28,4 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  onClick() {
-    this.userService.logout()
-      .then(() => {
-        this.router.navigate(['/login']).then(r => {
-        })
-      })
-      .catch(error => console.log(error))
-  }
-
 }
