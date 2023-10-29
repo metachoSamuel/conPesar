@@ -1,19 +1,60 @@
-<div class="fullcontent">
-  <div class="headings">
-    <h1>ConPesar EPS</h1>
-    <br>
-    <h2>Nos complace que estén aquí. Somos una Entidad Promotora de Salud comprometida con el bienestar y la salud de todos nuestros afiliados. Nuestro objetivo es brindarles un servicio de alta calidad y eficiencia, garantizando su acceso a una atención médica oportuna y de calidad. Aquí encontrarán información sobre nuestros servicios, cómo acceder a ellos y mucho más. ¡Gracias por elegirnos como su EPS de confianza!</h2>
-  </div>
-  <div class="formbox">
-    <h3>Log In</h3>
-    <form [formGroup]="formlogin" (ngSubmit)="onSubmit()">
-      <label>email</label>
-      <input type="email" class="asd" formControlName="email"/>
-      <label>Password</label>
-      <input type="password" class="asd" formControlName="password"/>
-      <button  class="mainbox" (click)="navigateToHome()">Login</button>
-      <button class="mainbox" (click)="onClick()">Login with Google</button>
-      <p class="message">Not registered? <a (click)="navigateToRegistro()">Create an account</a></p>
-    </form>
+<div class="container mt-5 mx-auto">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-center">
+        <img src="../../assets/img/logoLogin.png" class="img-fluid" alt="Sample image">
+      </div>
+    </div>
+    <div class="col-md-6 container-custom">
+      <h1 class="my-5 display-3 fw-bold ls-tight">
+        ConPesar <span class="text-primary">EPS</span>
+      </h1>
+      <br>
+      <form [formGroup]="formlogin" (ngSubmit)="onSubmit()">
+        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+          <p class="lead fw-normal mb-0 me-3">Ingresa con
+            <a (click)="onClick()" class="custom-a"><span class="text-primary">Google</span></a>
+          </p>
+        </div>
+
+        <div class="divider d-flex align-items-center my-4"></div>
+
+        <h3 class="my-3 display-5 ls-tight">
+          Credenciales
+        </h3>
+        <br>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="email" id="form3Example3" class="form-control form-control-lg"
+                 placeholder="Ingresa tu correo electronico"  formControlName="email"/>
+          <label class="form-label" for="form3Example3">Correo electronico</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-3">
+          <input type="password" id="form3Example4" class="form-control form-control-lg"
+                 placeholder="Enter password" formControlName="password"/>
+          <label class="form-label" for="form3Example4">Contrasena</label>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <!-- Checkbox -->
+          <div class="form-check mb-0">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+            <label class="form-check-label" for="form2Example3">
+              Remember me
+            </label>
+          </div>
+          <a href="#!" class="text-body">Olvide la contrasena</a>
+        </div>
+
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <button type="submit" class="btn btn-primary btn-lg">Login</button>
+          <p class="small fw-bold mt-2 pt-1 mb-0">No tienes una cuenta? <a (click)="navigateToRegistro()"
+                                                                            class="link-danger">Registrate</a></p>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

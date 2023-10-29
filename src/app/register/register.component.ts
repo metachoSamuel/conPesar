@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import Swal from 'sweetalert2';
+import Sweet from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -32,6 +32,28 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    Sweet.fire({
+      title: 'Gracias por elegirnos, pirmero debes aceptar terminos y condiciones',
+      showDenyButton: true,
+      confirmButtonText: 'OK',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Sweet.fire(
+          'Gracias por confiar en nosotros',
+          '',
+          'success'
+        )
+      } else {
+        Sweet.fire(
+          'Deber aceptar los terminos y condiciones para poder registrarse',
+          '',
+          'error'
+        ).then(r => {
+          this.navigateToLogin();
+        })
+      }
+    })
   }
   navigateToLogin() {
     this.router.navigate(['/login']); // Navegar al componente LoginComponent
@@ -41,7 +63,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.formReg.value);
     this.userService.register(this.formReg.value)
       .then(response => {
-        Swal.fire(
+        Sweet.fire(
           'User register successfully',
           '',
           'success'
@@ -52,7 +74,7 @@ export class RegisterComponent implements OnInit {
       })
       .catch(error => {
         console.log(error)
-          Swal.fire({
+          Sweet.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Email/Password no cumple el formato'
