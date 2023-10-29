@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AppointmentService} from "../../services/appointment.service";
 import {Appointment} from "../../interfaces/appointment";
+import Sweet from "sweetalert2";
 
 @Component({
   selector: 'app-personal',
@@ -81,6 +82,20 @@ export class PersonalComponent implements OnInit{
             text: 'No se pudo agendar el Examen'
           })
         });
+  }
+
+  onClickDelete(appointments: Appointment) {
+    Sweet.fire({
+      title: 'Quieres eliminar esta cita?',
+      showDenyButton: true,
+      confirmButtonText: 'OK',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Sweet.fire('Eliminada', '', 'success')
+        this.appointmentService.deleteAppointment(appointments).then(r => {});
+      }
+    })
   }
 
 }
