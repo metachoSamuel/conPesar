@@ -67,7 +67,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formReg.value);
     if (!this.isStrongPassword(this.formReg.get('password')?.value)) {
       Sweet.fire({icon: 'error', title: 'Oops...',
         text: 'La contrasena debe tener:\n' +

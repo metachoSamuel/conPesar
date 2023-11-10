@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {AppointmentService} from "../../services/appointment.service";
 import {Appointment} from "../../interfaces/appointment";
 import Sweet from "sweetalert2";
+import {SharedService} from "../../services/shared.service";
 
 @Component({
   selector: 'app-personal',
@@ -13,13 +14,15 @@ import Sweet from "sweetalert2";
 })
 export class PersonalComponent implements OnInit{
 
+  uid: string | null = null;
   mostrarFormulario: number | null = null;
   formCita: FormGroup;
   appointments: Appointment[];
 
   constructor(
       private router: Router,
-      private appointmentService: AppointmentService
+      private appointmentService: AppointmentService,
+      private sharedService: SharedService,
   ) {
     this.appointments = []
     this.formCita = new FormGroup({
@@ -34,10 +37,7 @@ export class PersonalComponent implements OnInit{
   }
 
   ngOnInit () {
-    this.appointmentService.getAppointments().subscribe(appointments => {
-      console.log(appointments)
-      this.appointments = appointments;
-    })
+    this.uid = this.sharedService.getLoggedInUid();
   }
 
   toggleFormulario(numberForm: number): void {
@@ -45,7 +45,6 @@ export class PersonalComponent implements OnInit{
   }
 
   agendarCita() {
-    console.log(this.formCita.value);
     this.appointmentService.addAppointment(this.formCita.value)
         .then(response => {
           Swal.fire(
@@ -65,7 +64,6 @@ export class PersonalComponent implements OnInit{
   }
 
   agendarExam() {
-    console.log(this.formCita.value);
     this.appointmentService.addExam(this.formCita.value)
         .then(response => {
           Swal.fire(

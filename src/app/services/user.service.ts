@@ -9,6 +9,7 @@ import {
 } from "@angular/fire/auth";
 import {addDoc, collection, Firestore} from "@angular/fire/firestore";
 import {User} from "../interfaces/user";
+import {SharedService} from "./shared.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class UserService {
 
   constructor(
     private auth: Auth,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private sharedService: SharedService
   ) { }
 
   async register({email, password, name, lastName}: any) {
@@ -37,8 +39,11 @@ export class UserService {
 
     return credential;
   }
-  loginUser({ email, password }:any) {
-    return signInWithEmailAndPassword(this.auth, email, password);
+  async loginUser({ email, password }:any) {
+    const credentials = await signInWithEmailAndPassword(this.auth, email, password);
+    const uid = credentials.user.uid;
+    this.sharedService.setLoggedInUid(uid);
+    return credentials;
   }
   logout() {
     return signOut(this.auth);
