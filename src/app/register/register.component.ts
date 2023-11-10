@@ -31,6 +31,20 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  isStrongPassword(password: string) {
+    const lengthRegex = /.{8,}/;
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
+    const digitRegex = /\d/;
+
+    return (
+      lengthRegex.test(password) &&
+      uppercaseRegex.test(password) &&
+      lowercaseRegex.test(password) &&
+      digitRegex.test(password)
+    );
+  }
+
   ngOnInit(): void {
     Sweet.fire({
       title: 'Gracias por elegirnos, pirmero debes aceptar terminos y condiciones',
@@ -39,16 +53,9 @@ export class RegisterComponent implements OnInit {
       denyButtonText: `Cancel`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Sweet.fire(
-          'Gracias por confiar en nosotros',
-          '',
-          'success'
-        )
+        Sweet.fire('Gracias por confiar en nosotros', '', 'success')
       } else {
-        Sweet.fire(
-          'Deber aceptar los terminos y condiciones para poder registrarse',
-          '',
-          'error'
+        Sweet.fire('Deber aceptar los terminos y condiciones para poder registrarse', '', 'error'
         ).then(r => {
           this.navigateToLogin();
         })
@@ -61,24 +68,25 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.formReg.value);
+    if (!this.isStrongPassword(this.formReg.get('password')?.value)) {
+      Sweet.fire({icon: 'error', title: 'Oops...',
+        text: 'La contrasena debe tener:\n' +
+          'al menos 8 caracteres\n' +
+          'al menos una letra mayúscula\n' +
+          'al menos una letra minúscula\n' +
+          'al menos un dígito'})
+      return;
+    }
     this.userService.register(this.formReg.value)
       .then(response => {
-        Sweet.fire(
-          'User register successfully',
-          '',
-          'success'
-        )
+        Sweet.fire('User register successfully', '', 'success')
         const { password, ...formValues } = this.formReg.value
         this.userService.addUser(formValues).then(r => {})
         this.router.navigate(['/home']).then(r => {});
       })
       .catch(error => {
         console.log(error)
-          Sweet.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Email/Password no cumple el formato'
-          })
+          Sweet.fire({icon: 'error', title: 'Oops...', text: 'No se registro '})
       });
   }
 }
