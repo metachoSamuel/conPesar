@@ -1,25 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AppointmentService} from "../../services/appointment.service";
 import {Appointment} from "../../interfaces/appointment";
 import Sweet from "sweetalert2";
+import {SharedService} from "../../services/shared.service";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.css']
 })
-export class PersonalComponent implements OnInit{
+export class PersonalComponent implements OnInit, OnDestroy {
 
+  uid: string | null = null;
   mostrarFormulario: number | null = null;
   formCita: FormGroup;
   appointments: Appointment[];
-
+  private ngUnsubscribe = new Subject<void>();
   constructor(
       private router: Router,
-      private appointmentService: AppointmentService
+      private appointmentService: AppointmentService,
+      private sharedService: SharedService,
   ) {
     this.appointments = []
     this.formCita = new FormGroup({
@@ -33,11 +37,23 @@ export class PersonalComponent implements OnInit{
     })
   }
 
-  ngOnInit () {
-    this.appointmentService.getAppointments().subscribe(appointments => {
-      console.log(appointments)
-      this.appointments = appointments;
-    })
+  ngOnInit() {
+      this.sharedService.getLoggedInUid()
+          .pipe(takeUntil(this.ngUnsubscribe))
+          .subscribe(uid => {
+              this.uid = uid;
+              this.loadAppointments();
+          });
+  }
+  ngOnDestroy() {
+      this.ngUnsubscribe.next();
+      this.ngUnsubscribe.complete();
+  }
+
+  private loadAppointments() {
+      this.appointmentService.getAppointments(this.uid).subscribe(appointments => {
+          this.appointments = appointments;
+      });
   }
 
   toggleFormulario(numberForm: number): void {
@@ -45,8 +61,7 @@ export class PersonalComponent implements OnInit{
   }
 
   agendarCita() {
-    console.log(this.formCita.value);
-    this.appointmentService.addAppointment(this.formCita.value)
+    this.appointmentService.addAppointment(this.formCita.value, this.uid)
         .then(response => {
           Swal.fire(
             'Cita agendada con exito',
@@ -65,7 +80,6 @@ export class PersonalComponent implements OnInit{
   }
 
   agendarExam() {
-    console.log(this.formCita.value);
     this.appointmentService.addExam(this.formCita.value)
         .then(response => {
           Swal.fire(

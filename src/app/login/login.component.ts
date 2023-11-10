@@ -11,13 +11,13 @@ import Sweet from "sweetalert2";
 })
 export class LoginComponent {
 
-  formlogin: FormGroup;
+  formLogin: FormGroup;
 
   constructor(
     private router: Router,
     private userService: UserService
   ) {
-    this.formlogin = new FormGroup({
+    this.formLogin = new FormGroup({
       email: new FormControl(),
       password: new FormControl()
     })
@@ -35,20 +35,14 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log(this.formlogin.value);
-    this.userService.loginUser(this.formlogin.value)
+    this.userService.loginUser(this.formLogin.value)
         .then((userCredential) => {
-            console.log(userCredential);
             Sweet.fire(
                 'User Login successfully',
                 '',
                 'success'
             )
             this.navigateToHome();
-            return userCredential.user.getIdToken();
-        })
-        .then((idToken) => {
-            const xhr = new XMLHttpRequest();
         })
         .catch((error) => {
             console.log(error),
@@ -63,7 +57,6 @@ export class LoginComponent {
   onClick() {
     this.userService.loginWithGoogle()
       .then(response => {
-        console.log(response);
         this.navigateToHome();
       })
       .catch(error => console.log(error))

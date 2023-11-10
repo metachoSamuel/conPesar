@@ -67,7 +67,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formReg.value);
     if (!this.isStrongPassword(this.formReg.get('password')?.value)) {
       Sweet.fire({icon: 'error', title: 'Oops...',
         text: 'La contrasena debe tener:\n' +
@@ -80,8 +79,6 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.formReg.value)
       .then(response => {
         Sweet.fire('User register successfully', '', 'success')
-        const { password, ...formValues } = this.formReg.value
-        this.userService.addUser(formValues).then(r => {})
         this.router.navigate(['/home']).then(r => {});
       })
       .catch(error => {
