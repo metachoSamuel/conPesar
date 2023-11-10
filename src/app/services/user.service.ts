@@ -20,8 +20,22 @@ export class UserService {
     private firestore: Firestore
   ) { }
 
-  register({ email, password }: any) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  async register({email, password, name, lastName}: any) {
+    const credential = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    );
+    const uuidUser = credential.user.uid;
+    const user: User = {
+      uuidUser: uuidUser,
+      name: name,
+      lastName: lastName,
+      email: email,
+    };
+    this.addUser(user).then(r => {});
+
+    return credential;
   }
   loginUser({ email, password }:any) {
     return signInWithEmailAndPassword(this.auth, email, password);
