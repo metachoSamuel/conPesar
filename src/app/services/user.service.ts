@@ -29,13 +29,14 @@ export class UserService {
       password
     );
     const uuidUser = credential.user.uid;
+    this.sharedService.setLoggedInUid(uuidUser);
     const user: User = {
       uuidUser: uuidUser,
       name: name,
       lastName: lastName,
       email: email,
     };
-    this.addUser(user).then(r => {});
+    await this.addUser(user);
 
     return credential;
   }

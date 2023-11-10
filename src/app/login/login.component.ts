@@ -43,10 +43,6 @@ export class LoginComponent {
                 'success'
             )
             this.navigateToHome();
-            return userCredential.user.getIdToken();
-        })
-        .then((idToken) => {
-            const xhr = new XMLHttpRequest();
         })
         .catch((error) => {
             console.log(error),
